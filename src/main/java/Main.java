@@ -1,25 +1,16 @@
 import java.text.ParseException;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static long getReverseTsFromDateString(String dateString) {
-        try {
-            return TsToReverse.exec(StringToTs.exec(dateString));
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static String getDateStringFromReverseTs(long rts) {
-        return ReverseToString.exec(rts);
-    }
-
     public static void main(String[] args) {
-        // String dateString = "2021-12-01 00:00:01.000";
-        // long reverseTs = getReverseTsFromDateString(dateString);
-        // System.out.println("Reverse Ts: " + reverseTs);
+        long ts = TimeUnit.MILLISECONDS.toSeconds(1638361152000l);
+        long reverseTs = TsToReverse.exec(ts);
+        System.out.println("Reverse Ts: " + reverseTs);
+        String dateString = ReverseToString.exec(reverseTs);
+        System.out.println("Date:" + dateString);
         
-        long rts = 9223370398509174807l;
-        String dateString = getDateStringFromReverseTs(rts);
-        System.out.println(dateString);
+        // long rts = 9223370398071261846l;
+        // String dateString2 = ReverseToString.exec(rts);
+        // System.out.println("Custom rts:" + dateString2);
     }
 }
