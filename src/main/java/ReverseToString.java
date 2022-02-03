@@ -1,17 +1,12 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class ReverseToString {
-    public static final Long MAX_TIME = 999999999999999999l;
     public static final String DATE_FORMAT = "yyyyMMddHHmmssSSS";
 
-    public static Long exec(long timestamp) {
+    public static String exec(long timestamp) {
 
-        Long convert = MAX_TIME - timestamp;
-        try {
-            return new SimpleDateFormat(DATE_FORMAT).parse(Long.toString(convert)).getTime();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        long convert = Long.MAX_VALUE - timestamp;
+        return new Date(TimeUnit.SECONDS.toMillis(convert)).toString();
     }
 }
